@@ -3,7 +3,7 @@
 
 public class Main {
 
-    static class LinkedListNode{
+    static class LinkedListNode {
         public LinkedListNode next;
         public int data;
     }
@@ -12,19 +12,19 @@ public class Main {
         public int value = 0;
     }
 
-    public static int nthToLast (LinkedListNode head, int k) {
+    public static int nthToLast(LinkedListNode head, int k) {
         if (head == null) {
             return 0;
         }
         int i = nthToLast(head.next, k) + 1;
-        System.out.println("i="+ i);
-        if (i==k) {
+        System.out.println("i=" + i);
+        if (i == k) {
             System.out.println(head.data);
         }
         return i;
     }
 
-    public static LinkedListNode nthToLast2 (LinkedListNode head, int k, IntWrapper i) {
+    public static LinkedListNode nthToLast2(LinkedListNode head, int k, IntWrapper i) {
         if (head == null) {
             return null;
         }
@@ -37,6 +37,25 @@ public class Main {
         }
 
         return node;
+    }
+
+    public static LinkedListNode nthToLastIterative(LinkedListNode head, int k) {
+        if (k <= 0) return null;
+        LinkedListNode pi = head;
+        LinkedListNode p2 = head;
+
+        for (int i = 0; i < k - 1; i++) {
+            if (p2 == null) return null;
+            p2 = p2.next;
+        }
+
+        if(p2 ==null)return null;
+
+        while(p2.next !=null){
+            pi = pi.next;
+            p2 = p2.next;
+        }
+        return pi;
     }
 
     public static void main(String[] args) {
